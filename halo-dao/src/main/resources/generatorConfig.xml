@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<generatorConfiguration>
+    <context outputDir="src/main/java">
+        <!-- 数据源连接配置 -->
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://10.0.1.58:3306/csp?serverTimezone=UTC&amp;zeroDateTimeBehavior=round&amp;nullCatalogMeansCurrent=true"
+                        userName="lambdacal"
+                        password="yskj2407">
+        </jdbcConnection>
+
+        <!-- 配置mapper文件位置 -->
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources" />
+
+        <!-- 实体生成位置 -->
+        <javaClientGenerator parentPackage="com.ppy.halo.dao"
+                             entityPackage="domain" mapperPackage="mapper">
+        </javaClientGenerator>
+
+        <!-- 配置生成的表名 -->
+        <table tableName="ccp_project_group"></table>
+    </context>
+</generatorConfiguration>
