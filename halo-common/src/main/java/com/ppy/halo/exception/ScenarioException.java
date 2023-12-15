@@ -6,8 +6,8 @@ package com.ppy.halo.exception;
  * 扩展点初始化或者查找失败时，使用次异常
  * <p>
  *
- * @author Luke
- * @version 1.0.0
+ * @author jackie
+ 
  * @since 1.0.0 2022/11/18
  */
 public class ScenarioException extends RuntimeException {

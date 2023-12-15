@@ -13,10 +13,10 @@
 
         <!-- 实体生成位置 -->
         <javaClientGenerator parentPackage="com.ppy.halo.dao"
-                             entityPackage="domain" mapperPackage="mapper">
+                             entityPackage="entity" mapperPackage="mapper">
         </javaClientGenerator>
 
         <!-- 配置生成的表名 -->
-        <table tableName="ccp_project_group"></table>
+        <table tableName=""></table>
     </context>
 </generatorConfiguration>

@@ -16,8 +16,8 @@ import static com.ppy.halo.exception.ErrorMessage.EXTENSION_SCENARIO_NULL_ERROR;
 
 /**
  * 产品扩展点获取子类，包括具体加载扩展点的实现
- * @author Luke
- * @version 1.0.0
+ * @author jackie
+ 
  * @since 1.0.0 2022/11/18
  */
 @Component

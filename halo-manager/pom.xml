@@ -17,17 +17,7 @@
             <artifactId>halo-common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-        <dependency>
-            <groupId>com.ppy.halo</groupId>
-            <artifactId>halo-api</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.ppy.halo</groupId>
-            <artifactId>halo-dao</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <!--        spring-boot-starter: https://github.com/LianjiaTech/retrofit-spring-boot-starter -->
+        <!--https://github.com/LianjiaTech/retrofit-spring-boot-starter -->
         <dependency>
             <groupId>com.github.lianjiatech</groupId>
             <artifactId>retrofit-spring-boot-starter</artifactId>

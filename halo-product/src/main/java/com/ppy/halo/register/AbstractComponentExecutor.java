@@ -9,8 +9,8 @@ import java.util.function.Function;
 
 /**
  * 产品扩展点获取以及执行超类
- * @author Luke
- * @version 1.0.0
+ * @author jackie
+ 
  * @since 1.0.0 2022/11/18
  */
 public abstract class AbstractComponentExecutor {

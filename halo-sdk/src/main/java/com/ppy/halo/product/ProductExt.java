@@ -6,7 +6,7 @@ import java.lang.annotation.*;
 
 /**
  * 产品扩展点实现类标注用注解,标明类是个产品扩展点实现类
- * @author luke
+ * @author jackie
  * @since 1.0 2022/11/17
  */
 @Inherited

@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * ExtensionRepository
  * @author jackie
- * @version 1.0.0
+ 
  * @since 1.0.0 2023/13/18
  */
 @Repository

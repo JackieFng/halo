@@ -14,10 +14,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.squareup.retrofit2</groupId>
-            <artifactId>converter-gson</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.ppy.halo</groupId>
             <artifactId>halo-common</artifactId>
             <version>1.0-SNAPSHOT</version>

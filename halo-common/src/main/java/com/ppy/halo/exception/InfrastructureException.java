@@ -3,8 +3,8 @@ package com.ppy.halo.exception;
 /**
  * 基础设施层异常处理封装类
  *
- * @author Luke
- * @version 1.0.0
+ * @author jackie
+ 
  * @since 1.0.0 2022/11/18
  */
 public class InfrastructureException extends RuntimeException {
