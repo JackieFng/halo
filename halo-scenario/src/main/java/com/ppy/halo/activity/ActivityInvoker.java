@@ -33,7 +33,7 @@ import static com.ppy.halo.exception.ErrorMessage.*;
  *
  * @author: jackie
  * @version: 1.0
- * @since: 1.0 2022/11/21
+ * @since: 1.0 2022/12/21
  */
 
 public  class ActivityInvoker {
@@ -50,7 +50,7 @@ public  class ActivityInvoker {
     /**
      * 开启业务活动，内部创建一个活动对象，并将全局参数保存起来
      * @author: jackie
-     * @date: 2022/11/23 11:51
+     * @date: 2023/12/23 11:51
      * @param: [request, response]
      * @return: com.yuansuan.csp.scenario.activity.ActivityInvoker
      **/

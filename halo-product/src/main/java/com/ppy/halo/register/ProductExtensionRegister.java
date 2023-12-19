@@ -26,8 +26,7 @@ import static com.ppy.halo.exception.ErrorMessage.*;
  * 产品扩展点注册类
  *
  * @author jackie
- 
- * @since 1.0.0 2022/11/18
+ * @since 1.0.0 2023/12/18
  */
 @Component
 public class ProductExtensionRegister {
