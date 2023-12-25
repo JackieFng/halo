@@ -10,4 +10,6 @@ import com.ppy.halo.project.parameter.ProjectDomainOutputDO;
  **/
 public interface ProjectDomainServiceI {
     ProjectDomainOutputDO saveOrUpdateProject(ProjectDomainInputDO inputDO);
+
+    Boolean authorizePermissionOnSaveProject();
 }

@@ -6,6 +6,7 @@ import java.lang.annotation.*;
 
 /**
  * 领域能力标注注解类
+ *
  * @since 1.0 2023/12/17
  */
 @Inherited
@@ -13,6 +14,7 @@ import java.lang.annotation.*;
 @Target({ElementType.METHOD})
 @Component
 public @interface Ability {
-    String code()  default "";
-    String desc()  default "";
+    String code() default "";
+
+    String desc() default "";
 }

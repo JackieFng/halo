@@ -6,6 +6,7 @@ import java.lang.annotation.*;
 
 /**
  * 产品扩展点实现类标注用注解,标明类是个产品扩展点实现类
+ *
  * @author jackie
  * @since 1.0 2023/12/17
  */
@@ -14,6 +15,7 @@ import java.lang.annotation.*;
 @Target({ElementType.TYPE})
 @Component
 public @interface ProductExt {
-    String code()  default "";
-    String desc()  default "";
+    String code() default "";
+
+    String desc() default "";
 }

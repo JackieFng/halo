@@ -36,7 +36,6 @@ public class ProductExtensionRegister {
 
     /**
      * @description:
-     
      * @date: 2022/11/18 11:07
      * @param: [productExt]
      * @return: void
@@ -48,52 +47,51 @@ public class ProductExtensionRegister {
         }
         ProductExt extensionAnn = AnnotationUtils.findAnnotation(productExtClazz, ProductExt.class);
         // 获取被注解为Extension的方法
-        List<Method> extMethod =  Arrays.stream(productExtClazz.getDeclaredMethods()).filter(method -> method.isAnnotationPresent(Extension.class)).collect(Collectors.toList());
-        for(Method mtd:extMethod){
+        List<Method> extMethod = Arrays.stream(productExtClazz.getDeclaredMethods()).filter(method -> method.isAnnotationPresent(Extension.class)).collect(Collectors.toList());
+        for (Method mtd : extMethod) {
             Class returnType = mtd.getReturnType();
             String simpleName = productExt.getClass().getSimpleName().concat(".").concat(mtd.getName());
-            if(returnType == null || !ExtensionPointI.class.isAssignableFrom(returnType)){
-                throw new BizRuntimeException(EXTENSION_REGISTER_RETURN_TYPE_ERROR.getCode(), String.format(EXTENSION_REGISTER_RETURN_TYPE_ERROR.getMessage(),simpleName));
+            if (returnType == null || !ExtensionPointI.class.isAssignableFrom(returnType)) {
+                throw new BizRuntimeException(EXTENSION_REGISTER_RETURN_TYPE_ERROR.getCode(), String.format(EXTENSION_REGISTER_RETURN_TYPE_ERROR.getMessage(), simpleName));
             }
             //只能是空参数定义方法返回扩展点实例，否则报错
-            if(mtd.getParameterCount()>0){
-                throw new BizRuntimeException(EXTENSION_REGISTER_PARAMETER_ERROR.getCode(),String.format(EXTENSION_REGISTER_PARAMETER_ERROR.getMessage(),simpleName));
+            if (mtd.getParameterCount() > 0) {
+                throw new BizRuntimeException(EXTENSION_REGISTER_PARAMETER_ERROR.getCode(), String.format(EXTENSION_REGISTER_PARAMETER_ERROR.getMessage(), simpleName));
             }
             ExtensionPointI extInstance = null;
-            try{
-                extInstance = (ExtensionPointI)mtd.invoke(productExt,null);
-            }catch (Exception ex){
-                throw new BizRuntimeException(EXTENSION_REGISTER_METHOD_INVOKE_ERROR.getCode(), String.format(EXTENSION_REGISTER_METHOD_INVOKE_ERROR.getMessage(),simpleName),ex);
+            try {
+                extInstance = (ExtensionPointI) mtd.invoke(productExt, null);
+            } catch (Exception ex) {
+                throw new BizRuntimeException(EXTENSION_REGISTER_METHOD_INVOKE_ERROR.getCode(), String.format(EXTENSION_REGISTER_METHOD_INVOKE_ERROR.getMessage(), simpleName), ex);
             }
-            if(extInstance == null) {
-                throw new BizRuntimeException(EXTENSION_REGISTER_RETURN_VALUE_ERROR.getCode(),String.format(EXTENSION_REGISTER_RETURN_VALUE_ERROR.getMessage(),simpleName));
+            if (extInstance == null) {
+                throw new BizRuntimeException(EXTENSION_REGISTER_RETURN_VALUE_ERROR.getCode(), String.format(EXTENSION_REGISTER_RETURN_VALUE_ERROR.getMessage(), simpleName));
             }
             //仅仅通过bizId去定义扩展点坐标。因为目前扩展点是基于产品维度的，bizId对应这一个产品。
             BizScenario bizScenario = BizScenario.valueOf(extensionAnn.code());
             ExtensionCoordinate extensionCoordinate = new ExtensionCoordinate(calculateExtensionPoint(extInstance.getClass()), bizScenario.getUniqueIdentity());
             ExtensionPointI preVal = extensionRepository.saveProductExtensionByUniqueKey(extensionCoordinate, extInstance);
             if (preVal != null) {
-                throw new BizRuntimeException(EXTENSION_REGISTER_DUPLICATE_ERROR.getCode(),String.format(EXTENSION_REGISTER_DUPLICATE_ERROR.getMessage(),simpleName,preVal.getClass().getSimpleName(),extensionAnn.code()));
+                throw new BizRuntimeException(EXTENSION_REGISTER_DUPLICATE_ERROR.getCode(), String.format(EXTENSION_REGISTER_DUPLICATE_ERROR.getMessage(), simpleName, preVal.getClass().getSimpleName(), extensionAnn.code()));
             }
         }
     }
 
     /**
      * @description:
-     
      * @date: 2022/11/18 11:07
      * @param: [targetClz]
      * @return: java.lang.String
      **/
     private String calculateExtensionPoint(Class<?> targetClz) {
         Class<?>[] interfaces = ClassUtils.getAllInterfacesForClass(targetClz);
-        if(interfaces!=null && interfaces.length>0){
+        if (interfaces != null && interfaces.length > 0) {
             for (Class intf : interfaces) {
-                if(ExtensionPointI.class.isAssignableFrom(intf)){
+                if (ExtensionPointI.class.isAssignableFrom(intf)) {
                     return intf.getName();
                 }
             }
         }
-        throw new BizRuntimeException(EXTENSION_REGISTER_INTERFACE_ERROR.getCode(), String.format(EXTENSION_REGISTER_INTERFACE_ERROR.getMessage(),targetClz.getSimpleName()));
+        throw new BizRuntimeException(EXTENSION_REGISTER_INTERFACE_ERROR.getCode(), String.format(EXTENSION_REGISTER_INTERFACE_ERROR.getMessage(), targetClz.getSimpleName()));
     }
 }
