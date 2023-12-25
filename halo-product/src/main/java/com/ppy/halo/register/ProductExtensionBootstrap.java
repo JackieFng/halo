@@ -26,8 +26,8 @@ public class ProductExtensionBootstrap implements ApplicationContextAware {
     private ApplicationContext applicationContext;
 
     @PostConstruct
-    public void init(){
-       Map<String, Object> extensionBeans = applicationContext.getBeansWithAnnotation(ProductExt.class);
+    public void init() {
+        Map<String, Object> extensionBeans = applicationContext.getBeansWithAnnotation(ProductExt.class);
         extensionBeans.values().forEach(
                 extension -> extensionRegister.doRegistration((ProductExtFacadeI) extension)
         );

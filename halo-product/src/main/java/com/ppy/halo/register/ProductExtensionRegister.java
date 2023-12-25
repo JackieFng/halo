@@ -35,7 +35,7 @@ public class ProductExtensionRegister {
     private ProductExtensionRepositoryI extensionRepository;
 
     /**
-     * @description:
+     *
      * @date: 2022/11/18 11:07
      * @param: [productExt]
      * @return: void

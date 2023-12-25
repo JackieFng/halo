@@ -16,8 +16,8 @@ import static com.ppy.halo.exception.ErrorMessage.EXTENSION_SCENARIO_NULL_ERROR;
 
 /**
  * 产品扩展点获取子类，包括具体加载扩展点的实现
+ *
  * @author jackie
- 
  * @since 1.0.0 2022/11/18
  */
 @Component
@@ -32,7 +32,7 @@ public class ExtensionExecutor extends AbstractComponentExecutor {
 
     /**
      * 加载扩展点的入口方法
-     
+     *
      * @date: 2022/11/18 16:25
      * @param: [targetClz, bizScenario]
      * @return: C
@@ -49,7 +49,7 @@ public class ExtensionExecutor extends AbstractComponentExecutor {
      * 第一次根据bizId+useCase+scenario尝试获取，如果获取不到
      * 第二次根据bizId+useCase尝试获取，如果获取不到
      * 第三次根据bizId尝试获取，三次全部获取不到报错
-     
+     *
      * @date: 2022/11/18 16:25
      * @param: [targetClz, bizScenario]
      * @return: Ext
@@ -77,47 +77,47 @@ public class ExtensionExecutor extends AbstractComponentExecutor {
         if (extension != null) {
             return extension;
         }
-        throw new BizRuntimeException(EXTENSION_NOT_FOUND_ERROR.getCode(), String.format(EXTENSION_NOT_FOUND_ERROR.getMessage(),targetClz,bizScenario.getUniqueIdentity()));
+        throw new BizRuntimeException(EXTENSION_NOT_FOUND_ERROR.getCode(), String.format(EXTENSION_NOT_FOUND_ERROR.getMessage(), targetClz, bizScenario.getUniqueIdentity()));
     }
 
     /**
      * 用全名bizId+useCase+scenario尝试获取扩展点
-     
+     *
      * @date: 2022/11/21 09:18
      * @param: [targetClz, bizScenario]
      * @return: Ext
      **/
     private <Ext extends ExtensionPointI> Ext firstTry(Class<Ext> targetClz, BizScenario bizScenario) {
         logger.debug("First trying with " + bizScenario.getUniqueIdentity());
-        return locate(targetClz,targetClz.getName(), bizScenario.getUniqueIdentity());
+        return locate(targetClz, targetClz.getName(), bizScenario.getUniqueIdentity());
     }
 
     /**
      * 用bizId+useCase+defaultScenario尝试获取扩展点
-     
+     *
      * @date: 2022/11/21 09:22
      * @param: [targetClz, bizScenario]
      * @return: Ext
      **/
     private <Ext extends ExtensionPointI> Ext secondTry(Class<Ext> targetClz, BizScenario bizScenario) {
         logger.debug("Second trying with " + bizScenario.getIdentityWithDefaultScenario());
-        return locate(targetClz,targetClz.getName(), bizScenario.getIdentityWithDefaultScenario());
+        return locate(targetClz, targetClz.getName(), bizScenario.getIdentityWithDefaultScenario());
     }
 
     /**
      * 用bizId+defaultUseCase+defaultScenario尝试获取扩展点
-     
+     *
      * @date: 2022/11/21 09:22
      * @param: [targetClz, bizScenario]
      * @return: Ext
      **/
     private <Ext extends ExtensionPointI> Ext defaultUseCaseTry(Class<Ext> targetClz, BizScenario bizScenario) {
         logger.debug("Third trying with " + bizScenario.getIdentityWithDefaultUseCase());
-        return locate(targetClz,targetClz.getName(), bizScenario.getIdentityWithDefaultUseCase());
+        return locate(targetClz, targetClz.getName(), bizScenario.getIdentityWithDefaultUseCase());
     }
 
     private <Ext extends ExtensionPointI> Ext locate(Class<Ext> clazz, String name, String uniqueIdentity) {
-        final Ext ext = (Ext) productExtensionRepository.getProductExtensionByUniqueKey(clazz,new ExtensionCoordinate(name, uniqueIdentity));
+        final Ext ext = (Ext) productExtensionRepository.getProductExtensionByUniqueKey(clazz, new ExtensionCoordinate(name, uniqueIdentity));
         return ext;
     }
 
