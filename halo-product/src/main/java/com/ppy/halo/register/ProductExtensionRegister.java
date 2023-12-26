@@ -35,7 +35,6 @@ public class ProductExtensionRegister {
     private ProductExtensionRepositoryI extensionRepository;
 
     /**
-     *
      * @date: 2022/11/18 11:07
      * @param: [productExt]
      * @return: void
@@ -78,7 +77,6 @@ public class ProductExtensionRegister {
     }
 
     /**
-     * @description:
      * @date: 2022/11/18 11:07
      * @param: [targetClz]
      * @return: java.lang.String
